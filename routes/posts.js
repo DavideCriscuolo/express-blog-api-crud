@@ -13,13 +13,12 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const id = Number(req.params.id);
-  const post = posts.filter((post) => {
-    if (post.id === id) {
-      return res.json(post);
-    } else {
-      res.status(404).json({ error: "Post non trovato" });
-    }
-  });
+  const post = posts.find((post) => post.id === id);
+  if (post) {
+    res.json(post);
+  } else {
+    res.status(404).json({ error: "Post non trovato" });
+  }
 });
 
 //Create
