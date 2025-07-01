@@ -22,9 +22,39 @@ router.get("/:id", (req, res) => {
   });
 });
 
+//Create
 router.post("/", (req, res) => {
   const id = Number(req.params.id);
   res.send("Post salvato con successo");
+});
+
+//Update
+router.put("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  res.send(`Hai modificato parzialmente il post con id ${id}`);
+});
+
+router.patch("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  res.send(`Hai modificato Interamente il post con id ${id}`);
+});
+//Deleate
+
+router.delete("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const index = posts.findIndex((post) => {
+    if (post.id === id) {
+      return true;
+    }
+  });
+
+  if (index !== -1) {
+    posts.splice(index, 1);
+    res.sendStatus(204);
+  } else {
+    res.status(404).json({ error: "Post non trovato" });
+  }
+  console.log(posts);
 });
 
 module.exports = router;
