@@ -5,10 +5,7 @@ const postsController = require("./../controllers/posts");
 
 //index
 
-router.get("/", (req, res) => {
-  postsController.filterTitle(req);
-  res.json(posts);
-});
+router.get("/", postsController.indexFilter);
 
 //show
 

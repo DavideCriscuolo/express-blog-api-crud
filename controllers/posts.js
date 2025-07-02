@@ -69,17 +69,20 @@ const upadteFull = (req, res) => {
   res.json(posts);
   console.log(posts);
 };
-function filterTitle(req) {
-  const query = req.query;
-  const post = posts.find((post) => post.title === query.title);
-  console.log(post);
-}
+const indexFilter = (req, res) => {
+  let filteredPosts = posts;
+  if (req.query.tag) {
+    filteredPosts = posts.filter(
+      (post) => post.tags && post.tags.includes(req.query.tag)
+    );
+  }
+  res.json(filteredPosts);
+};
 
 module.exports = {
   show,
   destroy,
   store,
   update,
-  filterTitle,
-  upadteFull,
+  indexFilter,
 };
