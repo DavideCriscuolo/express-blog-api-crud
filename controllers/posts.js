@@ -27,7 +27,22 @@ const destroy = (req, res) => {
   console.log(posts);
 };
 
+const store = (req, res) => {
+  console.log(req.body);
+  const newPost = {
+    title: req.body.title,
+    content: req.body.content,
+    image: req.body.image,
+    tags: req.body.tags,
+  };
+
+  posts.push(newPost);
+  res.status(201).json(newPost);
+  console.log(posts);
+};
+
 module.exports = {
   show,
   destroy,
+  store,
 };

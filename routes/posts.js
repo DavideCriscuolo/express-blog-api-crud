@@ -14,10 +14,7 @@ router.get("/", (req, res) => {
 router.get("/:id", postsController.show);
 
 //Create
-router.post("/", (req, res) => {
-  const id = Number(req.params.id);
-  res.send("Post salvato con successo");
-});
+router.post("/", postsController.store);
 
 //Update
 router.put("/:id", (req, res) => {
