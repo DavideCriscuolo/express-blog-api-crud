@@ -55,9 +55,16 @@ const update = (req, res) => {
   console.log(posts);
 };
 
+function filterTitle(req) {
+  const query = req.query;
+  const post = posts.find((post) => post.title === query.title);
+  console.log(post);
+}
+
 module.exports = {
   show,
   destroy,
   store,
   update,
+  filterTitle,
 };
