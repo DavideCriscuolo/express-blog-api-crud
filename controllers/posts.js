@@ -65,7 +65,7 @@ const upadteFull = (req, res) => {
   post.title = req.body.title;
   post.content = req.body.content;
   post.image = req.body.image;
-  post.tags = [req.body.tags];
+  post.tags = req.body.tags;
   res.json(posts);
   console.log(posts);
 };
