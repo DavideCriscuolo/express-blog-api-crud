@@ -41,8 +41,23 @@ const store = (req, res) => {
   console.log(posts);
 };
 
+const update = (req, res) => {
+  const id = Number(req.params.id);
+  const post = posts.find((post) => post.id === id);
+  if (!post) {
+    return res.status(404).json({
+      error: "Post non trovato",
+    });
+  }
+  post.title = req.body.title;
+  post.content = req.body.content;
+  res.json(posts);
+  console.log(posts);
+};
+
 module.exports = {
   show,
   destroy,
   store,
+  update,
 };

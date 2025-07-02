@@ -17,10 +17,7 @@ router.get("/:id", postsController.show);
 router.post("/", postsController.store);
 
 //Update
-router.put("/:id", (req, res) => {
-  const id = Number(req.params.id);
-  res.send(`Hai modificato parzialmente il post con id ${id}`);
-});
+router.put("/:id", postsController.update);
 
 router.patch("/:id", (req, res) => {
   const id = Number(req.params.id);
