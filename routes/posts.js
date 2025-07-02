@@ -1,4 +1,4 @@
-const { posts } = require("./../data/posts");
+const posts = require("./../data/posts");
 const express = require("express");
 const router = express.Router();
 const postsController = require("./../controllers/posts");
@@ -7,6 +7,7 @@ const postsController = require("./../controllers/posts");
 
 router.get("/", (req, res) => {
   res.json(posts);
+  console.log(posts);
 });
 
 //show
