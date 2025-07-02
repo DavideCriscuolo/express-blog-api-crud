@@ -54,7 +54,21 @@ const update = (req, res) => {
   res.json(posts);
   console.log(posts);
 };
-
+const upadteFull = (req, res) => {
+  const id = Number(req.params.id);
+  const post = posts.find((post) => post.id === id);
+  if (!post) {
+    return res.status(404).json({
+      error: "Post non trovato",
+    });
+  }
+  post.title = req.body.title;
+  post.content = req.body.content;
+  post.image = req.body.image;
+  post.tags = [req.body.tags];
+  res.json(posts);
+  console.log(posts);
+};
 function filterTitle(req) {
   const query = req.query;
   const post = posts.find((post) => post.title === query.title);
@@ -67,4 +81,5 @@ module.exports = {
   store,
   update,
   filterTitle,
+  upadteFull,
 };

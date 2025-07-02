@@ -20,10 +20,7 @@ router.post("/", postsController.store);
 //Update
 router.put("/:id", postsController.update);
 
-router.patch("/:id", (req, res) => {
-  const id = Number(req.params.id);
-  res.send(`Hai modificato Interamente il post con id ${id}`);
-});
+router.patch("/:id", postsController.upadteFull);
 //Deleate
 
 router.delete("/:id", postsController.destroy);
