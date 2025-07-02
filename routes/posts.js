@@ -1,7 +1,7 @@
 const { posts } = require("./../data/posts");
-
 const express = require("express");
 const router = express.Router();
+const postsController = require("./../controllers/posts");
 
 //index
 
@@ -11,15 +11,7 @@ router.get("/", (req, res) => {
 
 //show
 
-router.get("/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const post = posts.find((post) => post.id === id);
-  if (post) {
-    res.json(post);
-  } else {
-    res.status(404).json({ error: "Post non trovato" });
-  }
-});
+router.get("/:id", postsController.show);
 
 //Create
 router.post("/", (req, res) => {
@@ -39,21 +31,6 @@ router.patch("/:id", (req, res) => {
 });
 //Deleate
 
-router.delete("/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const index = posts.findIndex((post) => {
-    if (post.id === id) {
-      return true;
-    }
-  });
-
-  if (index !== -1) {
-    posts.splice(index, 1);
-    res.sendStatus(204);
-  } else {
-    res.status(404).json({ error: "Post non trovato" });
-  }
-  console.log(posts);
-});
+router.delete("/:id", postsController.destroy);
 
 module.exports = router;
