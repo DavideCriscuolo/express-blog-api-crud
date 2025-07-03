@@ -1,11 +1,12 @@
 const posts = require("./../data/posts");
 const express = require("express");
 const router = express.Router();
+const pageNotFound = require("./../middleware/notFound");
 const postsController = require("./../controllers/posts");
 
 //index
 
-router.get("/", postsController.indexFilter);
+router.get("/", pageNotFound, postsController.indexFilter);
 
 //show
 
